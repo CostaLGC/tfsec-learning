@@ -1,4 +1,4 @@
-# TFSec Learning
+# TFSec
 
 Este repositório tem como objetivo aplicar actions de tfsec para análise de segurança em código Terraform.
 
