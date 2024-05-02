@@ -4,9 +4,14 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
   
-permissions: write-all
+permissions: none
 jobs:
   scan:
+    permissions:
+      contents: read
+      security-events: write-all
+      actions: read
+      
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
