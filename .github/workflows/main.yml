@@ -6,10 +6,6 @@ on:
 
 jobs:
   scan:
-    permissions:
-      contents: write-all
-      security-events: write-all
-      actions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
