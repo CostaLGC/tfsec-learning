@@ -4,13 +4,13 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
   
-
+permissions: read-all  
 jobs:
   scan:
-    permissions:
-      contents: read
-      security-events: write-all
-      actions: read
+    #permissions:
+      #contents: read
+      #security-events: write-all
+      #actions: read
       
     runs-on: ubuntu-latest
     steps:
