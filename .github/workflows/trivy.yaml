@@ -1,0 +1,42 @@
+name: Terraform Plan & Scan
+
+on:
+  workflow_dispatch: # Acionamento manual
+
+jobs:
+  meu_job:
+    runs-on: ubuntu-20.04
+    env:
+      TF_VERSION: "1.0.11"
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+    - name: Checkout do Código
+      uses: actions/checkout@v2
+
+    - name: Initialize Terraform
+      run: terraform init     
+    
+    - name: Plan Terraform
+      run: terraform plan
+      
+    - name: ls
+      run: ls
+      
+    - name: Trivy Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        scan-type: 'fs'
+        scan-ref: '.'
+
+    - name: Aqua Security Trivy
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+    
+          
